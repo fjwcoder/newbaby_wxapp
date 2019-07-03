@@ -1,0 +1,41 @@
+<view class="cu-bar bg-white">
+    <view class="action">
+        <text class="cuIcon-titles text-green"></text>
+        <text class="text-xl text-bold">新增接种记录</text>
+    </view>
+</view>
+<form bindsubmit="saveData">
+    <view class="cu-form-group ">
+        <view class="title">疫苗名称</view>
+        <input placeholder="请输入出生证编号" name="vaccine_name"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">疫苗厂家</view>
+        <input placeholder="请输入出生证编号" name="vaccine_factory"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">疫苗编号</view>
+        <input placeholder="请输入出生证编号" name="vaccine_branch_no"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">接种部位</view>
+        <picker bindchange="choosingPart" value="{{partsArr[part_index].id}}" range="{{partsArr}}" range-key="name" name="inject_boby_part">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{part_index?partsArr[part_index].name:'请选择'}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">接种时间</view>
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange" name="iniect_date">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">{{date}}</view>
+        </picker>
+    </view>
+    <view class="cu-form-group align-start">
+        <view class="title">接种反应</view>
+        <textarea maxlength="-1" placeholder="多行文本输入框" name="reaction"></textarea>
+    </view>
+    <view class="padding-xl">
+        <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">确定</button>
+    </view>
+</form>

@@ -1,0 +1,81 @@
+
+<view class="bg-white padding">
+    <view class="cu-steps">
+        <view class="cu-item text-green"  bindtap="jumpToPage1">
+            <text class="num" data-index="1"></text>
+            宝宝
+        </view>
+        <view class="cu-item ">
+            <text class="num" data-index="2"></text>
+            父母
+        </view>
+        <view class="cu-item " bindtap="jumpToPage3">
+            <text class="num" data-index="3"></text>
+            监护人
+        </view>
+    </view>
+</view>
+<form bindsubmit="nextStep">
+     <!-- 父亲 -->
+    <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+            <text class="cuIcon-title text-cyan"></text>
+            <text class="text-xl text-bold text-cyan">父亲</text>
+            <text class="text-Abc text-gray self-end margin-left-sm">father</text>
+        </view>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">姓名</view>
+        <input placeholder="请输入父亲姓名" name="father_name" maxlength="4"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">年龄</view>
+        <input placeholder="请输入父亲年龄" name="father_age" type="number" maxlength="2"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">国籍</view>
+        <input value="中国" name="father_nationality" disabled></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">民族</view>
+        <input placeholder="请输入父亲民族" name="father_nation"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">身份证号</view>
+        <input placeholder="请输入父亲身份证号" name="father_id_no" maxlength="18" type="idcard"></input>
+    </view>
+    <!-- 母亲 -->
+    <view class="cu-bar bg-white margin-top">
+        <view class="action title-style-3">
+            <text class="cuIcon-title text-pink"></text>
+            <text class="text-xl text-bold text-pink">母亲</text>
+            <text class="text-Abc text-gray self-end margin-left-sm">mather</text>
+        </view>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">姓名</view>
+        <input placeholder="请输入母亲姓名" name="mather_name" maxlength="4"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">年龄</view>
+        <input placeholder="请输入母亲年龄" name="mather_age" type="number" maxlength="2"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">国籍</view>
+        <input value="中国" name="mather_nationality" disabled></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">民族</view>
+        <input placeholder="请输入母亲民族" name="mather_nation"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">身份证号</view>
+        <input placeholder="请输入母亲身份证号" name="mather_id_no" maxlength="18" type="idcard"></input>
+    </view>
+    <view class="padding-xl">
+        <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit" >
+            下一步
+            <text class="cuIcon-forwardfill"></text>
+        </button>
+    </view>
+</form>

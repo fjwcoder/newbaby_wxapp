@@ -1,0 +1,106 @@
+/* pages/user/myBabyList.wxss */
+.big_box {
+    padding: 30rpx;
+}
+
+.box_item {
+    width: 100%;
+    background-color: #fff;
+    height: 260rpx;
+    box-shadow: 1px 5px 10px rgba(145, 145, 145, 0.3);
+    margin-top: 25rpx;
+    display: block;
+    width: 94%;
+    margin: 0 auto;
+    margin-top: 25rpx;
+}
+
+.top_box {
+    height: 182rpx;
+    box-sizing: border-box;
+    padding: 28rpx 0;
+    border-bottom: 1px solid #f6f6f9;
+    background-size: 120rpx auto;
+    font-size: 1.7rem;
+    background: #fff;
+    display: block;
+    padding: 20rpx 40rpx;
+
+
+}
+
+.bottom_box {
+    height: 78rpx;
+    padding-right: 40rpx;
+    overflow: hidden;
+}
+
+.item_name {
+    font-size: 30rpx;
+    color: #555;
+
+}
+
+.item_birthday {
+    font-size: 26rpx;
+    color: #666;
+    margin-left: 50rpx;
+}
+
+.more_info {
+    font-size: 28rpx;
+    color: #666;
+    line-height: 60rpx;
+}
+
+.item_btn2 {
+
+    border-radius: 999px;
+    background-color: #39b54a;
+    line-height: 50rpx;
+    float: right;
+    color: #fff;
+    font-size: 24rpx;
+    text-align: center;
+    align-content: center;
+    padding: 0 25rpx;
+    margin-right: 30rpx;
+    margin-top: 16rpx;
+}
+
+.item_btn1 {
+    border-radius: 999px;
+    border: 1rpx solid #e54d42;
+    box-sizing: border-box;
+    line-height: 46rpx;
+    float: right;
+    color: #e54d42;
+    font-size: 24rpx;
+    text-align: center;
+    align-content: center;
+    padding: 0 23rpx;
+    margin-top: 16rpx;
+}
+.add_icon{
+    text-align:center;
+    font-size: 100rpx;
+    line-height: 260rpx;
+    background-color: #fff;
+    margin: 0 auto;
+
+    height: 260rpx;
+    box-shadow: 1px 5px 10px rgba(145, 145, 145, 0.3);
+    margin-top: 25rpx;
+    display: block;
+    width: 94%;
+
+
+}
+.icon_bottom_text{
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+    color: #a3a3a3;
+    margin-top: 20rpx;
+    
+}

@@ -1,0 +1,21 @@
+<view class="big_box">
+    <view class="box_item">
+        <view class="top_box">
+            <view class="item_name">
+                姓名：测试
+                <text class="item_birthday">生日：2019-01-01</text>
+            </view>
+            <view class="more_info">更多信息</view>
+        </view>
+        <view class="bottom_box">
+            <view class="item_btn1">删除</view>
+            <view class="item_btn2" bindtap="jumpVaccinationList">操作</view>
+        </view>
+    </view>
+    <navigator  url="../new/index" hover-class="navigator-hover" open-type="navigate">
+        <view class="add_icon"> 
+        <text class="cuIcon-add lg text-gray"></text>
+    </view>
+    </navigator>
+    <view class="icon_bottom_text">您还没有宝宝信息，点击上方加号去添加</view>
+</view>

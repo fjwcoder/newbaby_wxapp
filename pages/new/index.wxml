@@ -1,0 +1,101 @@
+
+<view class="bg-white padding">
+    <view class="cu-steps">
+        <view class="cu-item">
+            <text class="num" data-index="1"></text>
+            宝宝
+        </view>
+        <view class="cu-item " bindtap="jumpToPage2">
+            <text class="num" data-index="2"></text>
+            父母
+        </view>
+        <view class="cu-item " bindtap="jumpToPage3">
+            <text class="num" data-index="3"></text>
+            监护人
+        </view>
+    </view>
+</view>
+<view class="cu-bar bg-white">
+    <view class="action">
+        <text class="cuIcon-titles text-green"></text>
+        <text class="text-xl text-bold">宝宝信息填写</text>
+    </view>
+</view>
+<form bindsubmit="nextStep">
+    <view class="cu-form-group ">
+        <view class="title">出生证编号</view>
+        <input placeholder="请输入出生证编号" name="birth_certificate_no"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">接种证编号</view>
+        <input placeholder="请输入出生证编号" name="vaccine_certificate_no"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">宝宝姓名</view>
+        <input placeholder="请输入宝宝姓名" name="full_name_of_baby"></input>
+    </view>
+    <!-- <view class="cu-form-group">
+        <view class="title">宝宝性别</view>
+        <picker bindchange="SexChange" value="{{baby_sex}}" range="{{sex_arr}}" name="baby_sex">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{baby_sex?sex_arr[baby_sex]:'请选择'}}
+            </view>
+        </picker>
+    </view> -->
+    <radio-group class="cu-form-group" bindchange="babySexChange" name='baby_sex' value="{{baby_sex}}">
+        <view class="title">宝宝性别</view>
+        <view style="">
+            <radio style="margin-right:10rpx" value="男"></radio>
+            男
+            <radio style="margin-right:10rpx;margin-left:20rpx;" value="女"></radio>
+            女
+        </view>
+    </radio-group>
+    <view class="cu-form-group">
+        <view class="title">出生日期</view>
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange" name="date_of_birth">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">{{date}}</view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">出生孕周</view>
+        <input placeholder="请输入出生孕周" name="pregnant_week" type="number"></input>
+        <button class="cu-btn round  shadow sm line-green">周</button>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">宝宝体重</view>
+        <input placeholder="请输入宝宝体重" name="baby_weight" type="number"></input>
+        <button class="cu-btn round  shadow sm line-green">克</button>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">宝宝身高</view>
+        <input placeholder="请输入宝宝身高" name="baby_height" type="number"></input>
+        <button class="cu-btn round  shadow sm line-green">厘米</button>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">健康状况</view>
+        <picker bindchange="choosingHealth" value="{{health_index}}" range="{{health_arr}}" name="health_status">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{health_index?health_arr[health_index]:'请选择'}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">出生地点分类</view>
+        <picker bindchange="birthPlaceClass" value="{{birth_place_index}}" range="{{birth_place_arr}}" name="birth_place_type">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{birth_place_index?birth_place_arr[birth_place_index]:'请选择'}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">接生机构名称</view>
+        <input placeholder="请输入接生机构名称" name="name_of_facility"></input>
+    </view>
+    <view class="padding-xl">
+        <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">
+            下一步
+            <text class="cuIcon-forwardfill"></text>
+        </button>
+    </view>
+</form>

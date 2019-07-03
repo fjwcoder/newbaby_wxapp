@@ -1,0 +1,55 @@
+<view class="bg-white padding">
+    <view class="cu-steps">
+        <view class="cu-item text-green" bindtap="jumpToPage1">
+            <text class="num" data-index="1"></text>
+            宝宝
+        </view>
+        <view class="cu-item text-green">
+            <text class="num" data-index="2" bindtap="jumpToPage2"></text>
+            父母
+        </view>
+        <view class="cu-item ">
+            <text class="num" data-index="3"></text>
+            监护人
+        </view>
+    </view>
+</view>
+<view class="cu-bar bg-white">
+    <view class="action border-title">
+        <text class="text-xl text-bold text-olive">填写监护人信息</text>
+        <text class="bg-gradual-green" style="width:3rem"></text>
+    </view>
+</view>
+<form bindsubmit="submitData">
+    <view class="cu-form-group ">
+        <view class="title">姓名</view>
+        <input placeholder="请输入监护人姓名" name="guardian_name" maxlength="4"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">手机号</view>
+        <input placeholder="请输入监护人手机号" name="guardian_mobile" type="number" maxlength="11"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">备用手机号</view>
+        <input placeholder="请输入监护人备用手机号" name="backup_mobile" type="number" maxlength="11"></input>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">与宝宝的关系</view>
+        <input placeholder="请输入监护人与宝宝的关系" name="relationship_to_baby"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">所在省市</view>
+        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" name="area">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group ">
+        <view class="title">详细住址</view>
+        <input placeholder="请输入监护人详细住址" name="address"></input>
+    </view>
+    <view class="padding-xl">
+        <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">提交</button>
+    </view>
+</form>
