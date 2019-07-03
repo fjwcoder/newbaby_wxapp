@@ -17,48 +17,55 @@ Page({
   },
 
   /**
-   * 授权登录
+   * create by fjw in 19.7.3
+   * 重写授权登录
    */
-  authorLogin: function (e) {
+  authorLogin: function(){
     let _this = this;
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      return false;
-    }
-    wx.showLoading({ title: "正在登录", mask: true });
-    // 执行微信登录
     wx.login({
-      success: function (res) {
-        // 发送用户信息
-        App._post_form('Common/wxappLogin'
-          , {
-            code: res.code,
-            user_info: e.detail.rawData,
-            encrypted_data: e.detail.encryptedData,
-            iv: e.detail.iv,
-            signature: e.detail.signature
+      success: function(res){
+        console.log(res);
+        if (res.errMsg !== 'login:ok'){
+          return false;
+        }
+        wx.showLoading({ title: "正在登录", mask: true });
+        wx.getUserInfo({
+          success: function(e){
+            // console.log(e);
+            if (e.errMsg !== 'getUserInfo:ok'){
+              return false;
+            }
+            // 数据发送到后台
+            App._post_form('Common/wxappLogin'
+            , {
+                code: res.code,
+                user_info: e.rawData,
+                encrypted_data: e.encryptedData,
+                iv: e.iv,
+                signature: e.signature
+            }
+            , function (result) { // 成功
+                console.log(result);
+                // 记录token user_id
+
+                App.globalData.user_id = result.data.user_id;
+                wx.setStorageSync('user_id', result.data.user_id);
+
+                App.globalData.user_token = result.data.user_token;
+                wx.setStorageSync('user_token', result.data.user_token);
+
+                // 跳转回原页面
+                _this.navigateBack();
+            }
+            , false
+            , function () {
+              wx.hideLoading();
+            });
+
           }
-          , function (result) {
-            console.log(result);
-            // 记录token user_id
-
-            App.globalData.user_id = result.data.user_id;
-            wx.setStorageSync('user_id', result.data.user_id);
-
-            App.globalData.user_mobile = result.data.mobile;
-            wx.setStorageSync('user_mobile', result.data.mobile);
-
-            App.globalData.user_token = result.data.user_token;
-            wx.setStorageSync('user_token', result.data.user_token);
-            
-            // 跳转回原页面
-            _this.navigateBack();
-          }
-          , false
-          , function () {
-            wx.hideLoading();
-          });
+        })
       }
-    });
+    })
   },
 
   /**
