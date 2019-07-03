@@ -5,17 +5,18 @@
 }
 
 .box_item {
-
     background-color: #fff;
-    height: 260rpx;
-    box-shadow: 1px 5px 10px rgba(145, 145, 145, 0.3);
-    margin-top: 25rpx;
-    display: block;
-    /* width: 94%; */
-    margin: 0 auto;
-    /* margin-top: 25rpx; */
+    padding: 30rpx 60rpx;
 }
 
+.name {
+    font-size: 30rpx;
+    margin-bottom: 20rpx;
+}
+.shengri{
+    font-size: 28rpx;
+    color: #666;
+}
 .cu-timeline {
     /* width: 94%; */
     margin: 0 auto;
@@ -31,10 +32,6 @@
     background: #fff;
     display: block;
     padding: 20rpx 40rpx;
-
-    
-
-
 }
 
 .bottom_box {
