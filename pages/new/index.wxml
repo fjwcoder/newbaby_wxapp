@@ -45,9 +45,9 @@
     <radio-group class="cu-form-group" bindchange="babySexChange" name='baby_sex' value="{{baby_sex}}">
         <view class="title">宝宝性别</view>
         <view style="">
-            <radio style="margin-right:10rpx" value="1" checked></radio>
+            <radio style="margin-right:10rpx" value="1" checked="{{babySex === 2?'':'false'}}"></radio>
             男
-            <radio style="margin-right:10rpx;margin-left:20rpx;" value="2"></radio>
+            <radio style="margin-right:10rpx;margin-left:20rpx;" value="2" checked="{{babySex === 1?'':'false'}}" ></radio>
             女
         </view>
     </radio-group>
