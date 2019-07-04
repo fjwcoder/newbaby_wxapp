@@ -33,7 +33,7 @@
     </view>
     <view class="cu-form-group align-start">
         <view class="title">接种反应</view>
-        <textarea maxlength="-1" placeholder="多行文本输入框" name="reaction" value="{{reaction}}"></textarea>
+        <textarea maxlength="-1" placeholder="请输入接种后的反应" name="reaction" value="{{reaction}}"></textarea>
     </view>
     <view class="padding-xl">
         <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">确定</button>
