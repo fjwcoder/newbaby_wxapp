@@ -13,22 +13,30 @@ Page({
     }, {
       name: '监护人'
     }],
+    region:['北京市','北京市','东城区'],
     sex_arr: ["男", "女"],
-    birth_place_arr: ['医院', '妇幼保健院', '家庭', '其它'],
-    health_arr: ['良好', '一般', '差'],
+    birth_place_arr: ['请选择','医院', '妇幼保健院', '家庭', '其它'],
+    health_arr: ['请选择','良好', '一般', '差'],
     health_index: '',
     num: -1,
     scroll: 0,
     baby_sex: '',
     birth_place_index: '',
     date: '请选择',
+    ceshi: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this.setData({
+      babyId: parseInt(options.baby_id)
+    })
+    if (options.baby_id) {
+      this.getBabyInfo(parseInt(options.baby_id))
+    }
   },
 
   /**
@@ -80,19 +88,53 @@ Page({
 
   },
   /**
+   * 拉取baby信息
+   */
+  getBabyInfo(baby_id) {
+    let _this = this
+    App._post_form('baby/getbabyinfo', {
+      user_token: App.getGlobalData('user_token'),
+      baby_id
+    }, function (result) {
+      console.log(result)
+      _this.setData({
+        birth_certificate_no: result.data.birth_certificate_no,
+        vaccine_certificate_no: result.data.vaccine_certificate_no,
+        full_name_of_baby: result.data.full_name_of_baby,
+        babySex: result.data.baby_sex,
+        date: result.data.date_of_birth,
+        pregnant_week: result.data.pregnant_week,
+        baby_height: result.data.baby_height,
+        health_index: result.data.health_status,
+        region: result.data.place_of_birth.split(','),
+        birth_place_index: result.data.birth_place_type,
+        name_of_facility: result.data.name_of_facility,
+        baby_weight:result.data.baby_weight,
+      })
+    })
+  },
+  /**
+   * 选择地区
+   */
+  RegionChange: function(e) {
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  /**
    * 跳转到第二页
    */
-  jumpToPage2(e){
+  jumpToPage2(e) {
     wx.redirectTo({
-      url:'second',
+      url: 'second',
     })
   },
   /**
    * 跳转到第三页
    */
-  jumpToPage3(e){
+  jumpToPage3(e) {
     wx.redirectTo({
-      url:'finish',
+      url: 'finish',
     })
   },
   /**
@@ -112,7 +154,7 @@ Page({
   //     baby_sex: e.detail.value
   //   })
   // },
-  babySexChange(e){
+  babySexChange(e) {
     this.setData({
       baby_sex: e.detail.value
     })
@@ -140,21 +182,37 @@ Page({
     let _this = this;
     console.log(e)
     var values = e.detail.value
+    //处理字符串
+    values.baby_sex = parseInt(values.baby_sex);
+    values.birth_place_type = parseInt(values.birth_place_type);
+    values.baby_weight = parseInt(values.baby_weight);
+    values.baby_height = parseInt(values.baby_height);
+    values.pregnant_week = parseInt(values.pregnant_week);
+    values.user_token = App.getGlobalData("user_token");
+    values.baby_id = _this.data.babyId,
+    console.log(values)
     // 表单验证
     if (!_this.verification(values)) {
       App.showError(_this.data.error);
       return false;
     }
-    wx.navigateTo({
-      url: 'second'
+    App._post_form('baby/editbabyinfo', values, function (result) {
+      console.log(result)
+      if (result.code === 200) {
+        App.setStorage('baby_id',result.data.babyInfo)
+  
+        wx.navigateTo({
+          url: 'second?baby_id='+_this.data.babyId
+        })
+      }
     })
+
     console.log("提交")
   },
   /**
    * 表单验证
    */
   verification(e) {
-    console.log(e);
     if (e.baby_sex === '') {
       this.data.error = '请选择宝宝性别';
       return false;

@@ -23,19 +23,19 @@
 <form bindsubmit="submitData">
     <view class="cu-form-group ">
         <view class="title">姓名</view>
-        <input placeholder="请输入监护人姓名" name="guardian_name" maxlength="4"></input>
+        <input placeholder="请输入监护人姓名" name="guardian_name" maxlength="4" value="{{guardian_name}}"></input>
     </view>
     <view class="cu-form-group">
         <view class="title">手机号</view>
-        <input placeholder="请输入监护人手机号" name="guardian_mobile" type="number" maxlength="11"></input>
+        <input placeholder="请输入监护人手机号" name="guardian_mobile" type="number" maxlength="11" value="{{guardian_mobile}}"></input>
     </view>
     <view class="cu-form-group">
         <view class="title">备用手机号</view>
-        <input placeholder="请输入监护人备用手机号" name="backup_mobile" type="number" maxlength="11"></input>
+        <input placeholder="请输入监护人备用手机号" name="backup_mobile" type="number" maxlength="11" value="{{backup_mobile}}"></input>
     </view>
     <view class="cu-form-group ">
         <view class="title">与宝宝的关系</view>
-        <input placeholder="请输入监护人与宝宝的关系" name="relationship_to_baby"></input>
+        <input placeholder="请输入监护人与宝宝的关系" name="relationship_to_baby" value="{{relationship_to_baby}}"></input>
     </view>
     <view class="cu-form-group">
         <view class="title">所在省市</view>
@@ -47,7 +47,7 @@
     </view>
     <view class="cu-form-group ">
         <view class="title">详细住址</view>
-        <input placeholder="请输入监护人详细住址" name="address"></input>
+        <input placeholder="请输入监护人详细住址" name="address" value="{{address}}"></input>
     </view>
     <view class="padding-xl">
         <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">提交</button>

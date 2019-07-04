@@ -26,9 +26,10 @@ Page({
     var time = util.formatTime(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据
     this.setData({
-      date: time
+      date: time,
+      type:parseInt(options.type)
     });
-    console.log(time)
+    console.log(options)
   },
 
   /**

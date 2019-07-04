@@ -20,7 +20,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var babyInfo = wx.getStorageSync('baby_id');
+    console.log(babyInfo)
+    this.setData({
+      babyId: babyInfo.id,
+      guardian_name: babyInfo.guardian_name,
+      guardian_mobile: babyInfo.guardian_mobile,
+      backup_mobile: babyInfo.backup_mobile,
+      relationship_to_baby: babyInfo.relationship_to_baby,
+      address: babyInfo.address,
+      area: babyInfo.area.split(','),
+    })
   },
 
   /**
@@ -71,27 +81,27 @@ Page({
   onShareAppMessage: function () {
 
   },
-   /**
+  /**
    * 跳转到第二页
    */
-  jumpToPage2(e){
+  jumpToPage2(e) {
     wx.redirectTo({
-      url:'second',
+      url: 'second',
     })
   },
   /**
    * 跳转到第1页
    */
-  jumpToPage1(e){
+  jumpToPage1(e) {
     console.log("fnejinf")
     wx.redirectTo({
-      url:'index',
+      url: 'index',
     })
   },
   /**
    * 选择地区
    */
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -103,18 +113,32 @@ Page({
     let _this = this;
     console.log(e)
     var values = e.detail.value
+    values.user_token = App.getGlobalData('user_token'),
+    values.baby_id = _this.data.babyId;
+    values.province = _this.data.region[0];
+    values.city = _this.data.region[1];
+    values.area = _this.data.region[2];
     // 表单验证
     if (!_this.verification(values)) {
       App.showError(_this.data.error);
       return false;
     }
-   wx.showToast({
-     title: '成功',
-     icon: 'succes',
-     duration: 1500,
-     mask: false,
-   });
-     
+    App._post_form('baby/editGuardianInfo', values, function (result) {
+      console.log(result)
+      if(result.code === 200){
+        wx.showToast({
+          title: '成功',
+          icon: 'succes',
+          duration: 1500,
+          mask: false,
+        });
+        wx.reLaunch({
+          url: '../user/myBabyList',
+        });
+          
+      }
+    })
+
     console.log("提交")
   },
   /**

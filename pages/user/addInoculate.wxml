@@ -1,7 +1,7 @@
 <view class="cu-bar bg-white">
     <view class="action">
         <text class="cuIcon-titles text-green"></text>
-        <text class="text-xl text-bold">新增接种记录</text>
+        <text class="text-xl text-bold">{{type?'编辑':'新增'}}接种记录</text>
     </view>
 </view>
 <form bindsubmit="saveData">

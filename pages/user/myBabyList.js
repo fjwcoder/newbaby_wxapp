@@ -1,18 +1,19 @@
 // pages/user/myBabyList.js
+let App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getBabyList()
   },
 
   /**
@@ -26,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserDetail()
   },
 
   /**
@@ -63,6 +64,24 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 获取当前用户信息
+   */
+  getUserDetail: function () {
+
+    if (App.isLogin() === false) { // create by fjw in 19.3.22: 如果用户没有登录，就重新登录
+      wx.hideNavigationBarLoading();
+      App.doLogin();
+      return false;
+    }
+
+    let _this = this;
+
+    // App._get('User/getUserDetail', {}, function (result) {
+    //   this.setData(result.data);
+    // });
+  },
   /**
    * 跳转添加
    */
@@ -73,11 +92,16 @@ Page({
     });
   },
   /**
-   * 跳转到baby接种记录列表
+   * 获取baby列表
    */
-  jumpVaccinationList() {
-    wx.navigateTo({
-      url: 'vaccinationList',
-    });
-  }
+  getBabyList() {
+    let _this = this
+    App._post_form('baby/getbabylist', {user_token:App.getGlobalData('user_token')}, function (result) {
+      console.log(result)
+      _this.setData({
+        baby_list:result.data
+      })
+    })
+  },
+
 })

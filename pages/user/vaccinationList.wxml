@@ -4,10 +4,10 @@
         <view class="shengri" hover-class="none" hover-stop-propagation="false">生日：2019-01-02</view> 
     </view>
     <view class="cu-timeline">
-        <!-- <view class="cu-time">全部</view> -->
-        <view class="cu-item cur text-{{item}}" wx:for="{{colorArr}}" wx:key="" wx:for-item="item">
-            <view class="content bg-{{item}} shadow-blur">
-                <view class="">2019-01-01</view>
+        <view class="cu-time">全部</view>
+        <view class="cu-item cur text-{{colorArr[indexx]}}" wx:for="{{colorArr}}" wx:key="" wx:for-item="item" wx:for-index="indexx" bindtap="jumpEditInoculate" data-injectId="{{item.id}}">
+            <view class="content bg-{{colorArr[indexx]}} shadow-blur">
+                <view class="">2019-01-01,{{indexx}}</view>
                 <view class="">乙肝疫苗第1剂次</view>
             </view>
         </view>
@@ -18,7 +18,7 @@
         </view>
     </view>
     <view class="padding flex flex-direction">
-        <button class="cu-btn bg-green lg">添加记录</button>
+        <button class="cu-btn bg-green lg" bind:tap="jumpAddInoculate">添加记录</button>
     </view>
     <!-- <navigator url="addInoculate" hover-class="navigator-hover" open-type="navigate">
         <view class="add_icon">

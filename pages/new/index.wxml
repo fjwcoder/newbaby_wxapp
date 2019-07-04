@@ -24,15 +24,15 @@
 <form bindsubmit="nextStep">
     <view class="cu-form-group ">
         <view class="title">出生证编号</view>
-        <input placeholder="请输入出生证编号" name="birth_certificate_no"></input>
+        <input placeholder="请输入出生证编号（选填）" name="birth_certificate_no" value="{{birth_certificate_no}}"></input>
     </view>
     <view class="cu-form-group ">
         <view class="title">接种证编号</view>
-        <input placeholder="请输入出生证编号" name="vaccine_certificate_no"></input>
+        <input placeholder="请输入出生证编号" name="vaccine_certificate_no" value="{{vaccine_certificate_no}}"></input>
     </view>
     <view class="cu-form-group">
         <view class="title">宝宝姓名</view>
-        <input placeholder="请输入宝宝姓名" name="full_name_of_baby"></input>
+        <input placeholder="请输入宝宝姓名" name="full_name_of_baby" value="{{full_name_of_baby}}"></input>
     </view>
     <!-- <view class="cu-form-group">
         <view class="title">宝宝性别</view>
@@ -45,9 +45,9 @@
     <radio-group class="cu-form-group" bindchange="babySexChange" name='baby_sex' value="{{baby_sex}}">
         <view class="title">宝宝性别</view>
         <view style="">
-            <radio style="margin-right:10rpx" value="男"></radio>
+            <radio style="margin-right:10rpx" value="1" checked></radio>
             男
-            <radio style="margin-right:10rpx;margin-left:20rpx;" value="女"></radio>
+            <radio style="margin-right:10rpx;margin-left:20rpx;" value="2"></radio>
             女
         </view>
     </radio-group>
@@ -58,18 +58,26 @@
         </picker>
     </view>
     <view class="cu-form-group">
+        <view class="title">出生地点</view>
+        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" name="place_of_birth">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
         <view class="title">出生孕周</view>
-        <input placeholder="请输入出生孕周" name="pregnant_week" type="number"></input>
+        <input placeholder="请输入出生孕周" name="pregnant_week" type="number" value="{{pregnant_week}}"></input>
         <button class="cu-btn round  shadow sm line-green">周</button>
     </view>
     <view class="cu-form-group">
         <view class="title">宝宝体重</view>
-        <input placeholder="请输入宝宝体重" name="baby_weight" type="number"></input>
+        <input placeholder="请输入宝宝体重" name="baby_weight" type="number" value="{{baby_weight}}"></input>
         <button class="cu-btn round  shadow sm line-green">克</button>
     </view>
     <view class="cu-form-group">
         <view class="title">宝宝身高</view>
-        <input placeholder="请输入宝宝身高" name="baby_height" type="number"></input>
+        <input placeholder="请输入宝宝身高" name="baby_height" type="number" value="{{baby_height}}"></input>
         <button class="cu-btn round  shadow sm line-green">厘米</button>
     </view>
     <view class="cu-form-group">
@@ -90,7 +98,7 @@
     </view>
     <view class="cu-form-group">
         <view class="title">接生机构名称</view>
-        <input placeholder="请输入接生机构名称" name="name_of_facility"></input>
+        <input placeholder="请输入接生机构名称" name="name_of_facility" value="{{name_of_facility}}"></input>
     </view>
     <view class="padding-xl">
         <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">

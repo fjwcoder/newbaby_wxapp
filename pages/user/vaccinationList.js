@@ -5,14 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArr: ["green", 'blue', 'orange', 'cyan', 'olive', 'yellow']
+    colorArr: ["green", "blue", "cyan", "olive", ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
   },
 
   /**
@@ -66,9 +66,15 @@ Page({
   /**
    * 
    */
-  jumpAddInoculate(){
+  jumpAddInoculate() {
     wx.navigateTo({
-      url: 'addInoculate',
+      url: 'addInoculate?type=0',
+    });
+  },
+  jumpEditInoculate(e) {
+    var inject_id = e.currentTarget.dataset.injectid
+    wx.navigateTo({
+      url: 'addInoculate?type=1&inject_id=' + inject_id,
     });
   }
 })
