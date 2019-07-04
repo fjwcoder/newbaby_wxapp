@@ -2,26 +2,25 @@
     <view class="box_item" wx:for="{{baby_list}}" wx:for-item="item" wx:key>
         <view class="top_box">
             <view class="item_name">
-                姓名：{{item.baby_id}}
+                姓名：{{item.full_name_of_baby?item.full_name_of_baby:'(未填写)'}}
                 <text class="item_birthday">生日：{{item.date_of_birth}}</text>
             </view>
             <view class="more_info">性别：{{item.baby_sex===1?'男':'女'}}</view>
         </view>
         <view class="bottom_box">
-           
             <navigator class="" target="" url="vaccinationList?baby_id={{item.baby_id}}" hover-class="navigator-hover" open-type="navigate">
-                 <view class="item_btn2">接种</view>
+                <view class="item_btn2">接种</view>
             </navigator>
             <navigator class="" target="" url="../new/index?baby_id={{item.baby_id}}" hover-class="navigator-hover" open-type="navigate">
-                 <view class="item_btn3">编辑</view>
+                <view class="item_btn3">编辑</view>
             </navigator>
-              <view class="item_btn1">删除</view>
+            <!-- <view class="item_btn1">删除</view> -->
         </view>
     </view>
-    <navigator  url="../new/index" hover-class="navigator-hover" open-type="navigate">
-        <view class="add_icon"> 
-        <text class="cuIcon-add lg text-gray"></text>
-    </view>
+    <navigator url="../new/index" hover-class="navigator-hover" open-type="navigate" class="add_icon_box">
+        <view class="add_icon">
+            <text class="cuIcon-add lg text-gray"></text>
+            <view class="icon_bottom_text">添加宝宝档案</view>
+        </view>
     </navigator>
-    <view class="icon_bottom_text">点击上方加号添加</view>
 </view>

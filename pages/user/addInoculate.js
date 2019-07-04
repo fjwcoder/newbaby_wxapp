@@ -29,6 +29,8 @@ Page({
     }
 
     console.log(options)
+    console.log(this.data.baby_id)
+    console.log(parseInt(this.data.inject_id))
   },
 
   /**
@@ -105,9 +107,12 @@ Page({
     console.log(e)
 
     var values = e.detail.value
-    values.baby_id = _this.data.baby_id,
-      values.inject_id = _this.data.inject_id,
+    values.baby_id = _this.data.baby_id
+    if (this.data.type){
+      values.inject_id = _this.data.inject_id
+    } 
       values.user_token = App.getGlobalData('user_token')
+      console.log(values)
     App._post_form('inject/editBabyInjectInfo', values, function (result) {
       console.log(result)
     })
