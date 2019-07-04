@@ -80,7 +80,9 @@ Page({
     App._post_form('inject/getBabyInjectList', {baby_id,user_token:App.getGlobalData('user_token')}, function (result) {
       console.log(result)
       _this.setData({
-        inject_list:result.data.inject_list
+        inject_list:result.data.inject_list,
+        baby_name:result.data.baby_info.full_name_of_baby?result.data.baby_info.full_name_of_baby:'(未填写)',
+        baby_birth:result.data.baby_info.date_of_birth
       })
     })
   },
@@ -89,7 +91,7 @@ Page({
    */
   jumpAddInoculate() {
     wx.navigateTo({
-      url: 'addInoculate?type=0',
+      url: 'addInoculate?type=0&baby_id='+this.data.babyId,
     });
   },
   jumpEditInoculate(e) {

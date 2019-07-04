@@ -1,7 +1,8 @@
 /* pages/user/myBabyList.wxss */
-page{
+page {
     background-color: #fff;
 }
+
 .big_box {
     padding: 30rpx;
 }
@@ -71,6 +72,7 @@ page{
     margin-left: 30rpx;
     margin-top: 16rpx;
 }
+
 .item_btn3 {
 
     border-radius: 999px;
@@ -99,26 +101,28 @@ page{
     padding: 0 23rpx;
     margin-top: 16rpx;
 }
-.add_icon{
-    text-align:center;
+
+.add_icon {}
+
+.add_icon_box {
+    text-align: center;
     font-size: 100rpx;
-    line-height: 260rpx;
     background-color: #fff;
     margin: 0 auto;
-
     height: 260rpx;
     box-shadow: 1px 5px 10px rgba(145, 145, 145, 0.3);
     margin-top: 25rpx;
     display: block;
     width: 94%;
-
-
+    display: block;
+    padding-top: 40rpx;
 }
-.icon_bottom_text{
+
+.icon_bottom_text {
     width: 100%;
     text-align: center;
     font-size: 28rpx;
     color: #a3a3a3;
     margin-top: 20rpx;
-    
+
 }

@@ -7,15 +7,15 @@
 <form bindsubmit="saveData">
     <view class="cu-form-group ">
         <view class="title">疫苗名称</view>
-        <input placeholder="请输入出生证编号" name="vaccine_name" value="{{vaccine_name}}"></input>
+        <input placeholder="请输入疫苗名称" name="vaccine_name" value="{{vaccine_name}}"></input>
     </view>
     <view class="cu-form-group ">
         <view class="title">疫苗厂家</view>
-        <input placeholder="请输入出生证编号" name="vaccine_factory" value="{{vaccine_factory}}"></input>
+        <input placeholder="请输入疫苗厂家" name="vaccine_factory" value="{{vaccine_factory}}"></input>
     </view>
     <view class="cu-form-group ">
         <view class="title">疫苗编号</view>
-        <input placeholder="请输入出生证编号" name="vaccine_branch_no" value="{{vaccine_branch_no}}"></input>
+        <input placeholder="请输入疫苗编号" name="vaccine_branch_no" value="{{vaccine_branch_no}}"></input>
     </view> 
     <view class="cu-form-group">
         <view class="title">接种部位</view>
@@ -33,7 +33,7 @@
     </view>
     <view class="cu-form-group align-start">
         <view class="title">接种反应</view>
-        <textarea maxlength="-1" placeholder="多行文本输入框" name="reaction" value="{{reaction}}"></textarea>
+        <textarea maxlength="-1" placeholder="请输入接种后的反应" name="reaction" value="{{reaction}}"></textarea>
     </view>
     <view class="padding-xl">
         <button class="cu-btn block bg-green margin-tb-sm lg" form-type="submit">确定</button>

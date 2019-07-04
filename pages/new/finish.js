@@ -127,6 +127,7 @@ Page({
     values.province = _this.data.region[0];
     values.city = _this.data.region[1];
     values.area = _this.data.region[2];
+    console.log(values)
     // 表单验证
     if (!_this.verification(values)) {
       App.showError(_this.data.error);
@@ -168,8 +169,8 @@ Page({
       this.data.error = '请正确输入监护人备用手机号';
       return false;
     }
-    if (e.relationship_to_baby === '') {
-      this.data.error = '请输入监护人与宝宝的关系';
+    if (e.relationship_to_baby === '0' || e.relationship_to_baby === 0) {
+      this.data.error = '请选择监护人与宝宝的关系';
       return false;
     }
     if (e.address === '' || e.address.length < 10) {

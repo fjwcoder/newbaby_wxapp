@@ -13,10 +13,10 @@ Page({
     }, {
       name: '监护人'
     }],
-    region:['北京市','北京市','东城区'],
+    region: ['北京市', '北京市', '东城区'],
     sex_arr: ["男", "女"],
-    birth_place_arr: ['请选择','医院', '妇幼保健院', '家庭', '其它'],
-    health_arr: ['请选择','良好', '一般', '差'],
+    birth_place_arr: ['请选择', '医院', '妇幼保健院', '家庭', '其它'],
+    health_arr: ['请选择', '良好', '一般', '差'],
     health_index: '',
     num: -1,
     scroll: 0,
@@ -37,13 +37,29 @@ Page({
     if (options.baby_id) {
       this.getBabyInfo(parseInt(options.baby_id))
     }
+    console.log(this.data),
+    console.log(this.data.babyId),
+    console.log(this.data.birth_certificate_no),
+    console.log(this.data.vaccine_certificate_no)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    if (this.data.babyId) {
+      console.log("编辑")
+      if (this.data.full_name_of_baby === undefined && this.data.vaccine_certificate_no === undefined && this.data.birth_certificate_no === undefined) {
+        wx.showModal({
+          title: '提示',
+          content: '请填写出生证编号等信息',
+          showCancel: false,
+          confirmText: '确定',
+          confirmColor: '#3CC51F',
+        });
+          
+      }
+    }
   },
 
   /**
@@ -109,14 +125,14 @@ Page({
         region: result.data.place_of_birth.split(','),
         birth_place_index: result.data.birth_place_type,
         name_of_facility: result.data.name_of_facility,
-        baby_weight:result.data.baby_weight,
+        baby_weight: result.data.baby_weight,
       })
     })
   },
   /**
    * 选择地区
    */
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -190,7 +206,7 @@ Page({
     values.pregnant_week = parseInt(values.pregnant_week);
     values.user_token = App.getGlobalData("user_token");
     values.baby_id = _this.data.babyId,
-    console.log(values)
+      console.log(values)
     // 表单验证
     if (!_this.verification(values)) {
       App.showError(_this.data.error);
@@ -199,10 +215,10 @@ Page({
     App._post_form('baby/editbabyinfo', values, function (result) {
       console.log(result)
       if (result.code === 200) {
-        App.setStorage('baby_id',result.data.babyInfo)
-  
+        App.setStorage('baby_id', result.data.babyInfo)
+
         wx.navigateTo({
-          url: 'second?baby_id='+_this.data.babyId
+          url: 'second?baby_id=' + _this.data.babyId
         })
       }
     })
@@ -217,7 +233,7 @@ Page({
       this.data.error = '请选择宝宝性别';
       return false;
     }
-    if (e.date_of_birth === '请选择') {
+    if (e.date_of_birth === '请选择' ) {
       this.data.error = '请选择宝宝出生日';
       return false;
     }
@@ -233,11 +249,11 @@ Page({
       this.data.error = '请输入宝宝身高';
       return false;
     }
-    if (e.health_status === '') {
-      this.data.error = '请输入宝宝健康状况';
+    if (e.health_status === '0'||e.health_status === 0) {
+      this.data.error = '请选择宝宝健康状况';
       return false;
     }
-    if (e.birth_place_type === '') {
+    if (e.birth_place_type === '0' || e.birth_place_type === 0) {
       this.data.error = '请选择出生地点分类';
       return false;
     }
