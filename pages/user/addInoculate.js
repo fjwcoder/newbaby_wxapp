@@ -1,4 +1,5 @@
 // pages/user/addInoculate.js
+let App = getApp()
 var util = require('../../utils/util.js');
 Page({
 
@@ -7,17 +8,9 @@ Page({
    */
   data: {
     date: '请选择',
-    partsArr:[
-      {id:1,name:"左上臂"},
-      {id:2,name:"右上臂"},
-      {id:3,name:"口服"},
-      {id:4,name:"左臀部"},
-      {id:5,name:"右臀部"},
-      {id:6,name:"左大腿"},
-      {id:7,name:"右大腿"},
-    ]
+    partsArr: ['请选择', '左上臂', '右上臂', '口服', '左臀部', '右臀部', '左大腿', '右大腿'],
+    part_index: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -27,8 +20,14 @@ Page({
     // 再通过setData更改Page()里面的data，动态更新页面的数据
     this.setData({
       date: time,
-      type:parseInt(options.type)
+      type: parseInt(options.type),
+      baby_id: parseInt(options.baby_id),
+      inject_id: parseInt(options.inject_id)
     });
+    if (this.data.type) {
+      this.getBabyInjectInfo(parseInt(options.baby_id), parseInt(options.inject_id))
+    }
+
     console.log(options)
   },
 
@@ -91,16 +90,48 @@ Page({
   /**
    * 选择接种部位
    */
-  choosingPart(e){
+  choosingPart(e) {
     console.log(e)
     this.setData({
-      part_index:e.detail.value
+      part_index: e.detail.value
     })
   },
   /**
    * 提交数据
    */
-  saveData(e){
+  saveData(e) {
+    let _this = this;
+
     console.log(e)
+
+    var values = e.detail.value
+    values.baby_id = _this.data.baby_id,
+      values.inject_id = _this.data.inject_id,
+      values.user_token = App.getGlobalData('user_token')
+    App._post_form('inject/editBabyInjectInfo', values, function (result) {
+      console.log(result)
+    })
+  },
+  /**
+   * 获取baby接种详情
+   */
+  getBabyInjectInfo(baby_id, inject_id) {
+    let _this = this;
+    App._post_form('inject/getBabyInjectInfo', {
+      baby_id: baby_id,
+      inject_id: inject_id,
+      user_token: App.getGlobalData('user_token')
+    }, function (result) {
+      console.log(result)
+      _this.setData({
+        vaccine_name: result.data.vaccine_name,
+        vaccine_factory: result.data.vaccine_factory,
+        vaccine_branch_no: result.data.vaccine_branch_no,
+        part_index: parseInt(result.data.inject_body_part),
+        date: result.data.inject_date,
+        reaction: result.data.reaction,
+      })
+
+    })
   }
 })

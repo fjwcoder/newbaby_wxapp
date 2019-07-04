@@ -5,10 +5,10 @@
     </view>
     <view class="cu-timeline">
         <view class="cu-time">全部</view>
-        <view class="cu-item cur text-{{colorArr[indexx]}}" wx:for="{{colorArr}}" wx:key="" wx:for-item="item" wx:for-index="indexx" bindtap="jumpEditInoculate" data-injectId="{{item.id}}">
+        <view class="cu-item cur text-{{colorArr[indexx]}}" wx:for="{{inject_list}}" wx:key="" wx:for-item="item" wx:for-index="indexx" bindtap="jumpEditInoculate" data-injectId="{{item.inject_id}}">
             <view class="content bg-{{colorArr[indexx]}} shadow-blur">
-                <view class="">2019-01-01,{{indexx}}</view>
-                <view class="">乙肝疫苗第1剂次</view>
+                <view class="">{{item.inject_date}}</view>
+                <view class="">{{item.vaccine_name}}</view>
             </view>
         </view>
         <view class="cu-item cur text-grey cuIcon-likefill" bindtap="jumpAddInoculate">

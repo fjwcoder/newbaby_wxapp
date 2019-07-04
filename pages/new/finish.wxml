@@ -33,9 +33,13 @@
         <view class="title">备用手机号</view>
         <input placeholder="请输入监护人备用手机号" name="backup_mobile" type="number" maxlength="11" value="{{backup_mobile}}"></input>
     </view>
-    <view class="cu-form-group ">
+    <view class="cu-form-group">
         <view class="title">与宝宝的关系</view>
-        <input placeholder="请输入监护人与宝宝的关系" name="relationship_to_baby" value="{{relationship_to_baby}}"></input>
+        <picker bindchange="choosingRelationship" value="{{relationshipIndex}}" range="{{relationshipArr}}" name="relationship_to_baby">
+            <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">
+                {{relationshipIndex?relationshipArr[relationshipIndex]:'请选择'}}
+            </view>
+        </picker>
     </view>
     <view class="cu-form-group">
         <view class="title">所在省市</view>

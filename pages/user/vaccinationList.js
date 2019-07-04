@@ -1,18 +1,27 @@
 // pages/user/vaccinationList.js
+let App = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    colorArr: ["green", "blue", "cyan", "olive", ]
+    colorArr: [
+      "green", "blue", "cyan", "olive", "green", "blue", "cyan", "olive","green", "blue", "cyan", "olive","green", 
+      "blue", "cyan", "olive","green", "blue", "cyan", "olive","green", "blue", "cyan", "olive","green", "blue", "cyan", "olive","green",
+      "blue", "cyan", "olive","green", "blue", "cyan", "olive","green", "blue", "cyan", "olive","green", "blue", "cyan", "olive",
+  ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log(parseInt(options.baby_id)),
+    this.getBabyInjectList(parseInt(options.baby_id))
+    this.setData({
+      babyId:options.baby_id
+    })
   },
 
   /**
@@ -64,6 +73,18 @@ Page({
 
   },
   /**
+   * 获取baby接种列表
+   */
+  getBabyInjectList(baby_id) {
+    let _this = this
+    App._post_form('inject/getBabyInjectList', {baby_id,user_token:App.getGlobalData('user_token')}, function (result) {
+      console.log(result)
+      _this.setData({
+        inject_list:result.data.inject_list
+      })
+    })
+  },
+  /**
    * 
    */
   jumpAddInoculate() {
@@ -74,7 +95,7 @@ Page({
   jumpEditInoculate(e) {
     var inject_id = e.currentTarget.dataset.injectid
     wx.navigateTo({
-      url: 'addInoculate?type=1&inject_id=' + inject_id,
+      url: 'addInoculate?type=1&inject_id=' + inject_id+'&baby_id='+this.data.babyId,
     });
   }
 })

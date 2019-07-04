@@ -109,7 +109,7 @@ Page({
     console.log(e)
     var values = e.detail.value
     values.user_token = App.getGlobalData('user_token'),
-      values.baby_id = _this.data.babyId
+    values.baby_id = _this.data.babyId
     // 表单验证
     if (!_this.verification(values)) {
       App.showError(_this.data.error);

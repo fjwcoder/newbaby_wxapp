@@ -13,6 +13,7 @@ Page({
       name: '监护人'
     }],
     region: ['北京市', '北京市', '东城区'],
+    relationshipArr:['请选择','父子','母子','父女','母女'],
     num: 1
   },
 
@@ -87,6 +88,14 @@ Page({
   jumpToPage2(e) {
     wx.redirectTo({
       url: 'second',
+    })
+  },
+   /**
+   * 监护人与baby的关系
+   */
+  choosingRelationship(e) {
+    this.setData({
+      relationshipIndex: e.detail.value
     })
   },
   /**

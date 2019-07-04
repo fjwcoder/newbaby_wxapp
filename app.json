@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/user/myBabyList",
     "pages/new/index",
     "pages/index/index",
@@ -10,6 +11,7 @@
     "pages/user/vaccinationList",
     "pages/user/addInoculate",
     "pages/remind/vaccine"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

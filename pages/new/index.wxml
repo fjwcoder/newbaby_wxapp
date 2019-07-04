@@ -28,11 +28,11 @@
     </view>
     <view class="cu-form-group ">
         <view class="title">接种证编号</view>
-        <input placeholder="请输入出生证编号" name="vaccine_certificate_no" value="{{vaccine_certificate_no}}"></input>
+        <input placeholder="请输入接种证编号（选填）" name="vaccine_certificate_no" value="{{vaccine_certificate_no}}"></input>
     </view>
     <view class="cu-form-group">
         <view class="title">宝宝姓名</view>
-        <input placeholder="请输入宝宝姓名" name="full_name_of_baby" value="{{full_name_of_baby}}"></input>
+        <input placeholder="请输入宝宝姓名（选填）" name="full_name_of_baby" value="{{full_name_of_baby}}"></input>
     </view>
     <!-- <view class="cu-form-group">
         <view class="title">宝宝性别</view>
@@ -53,7 +53,7 @@
     </radio-group>
     <view class="cu-form-group">
         <view class="title">出生日期</view>
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange" name="date_of_birth">
+        <picker mode="date" value="{{date}}" start="2000-09-01" end="2020-09-01" bindchange="DateChange" name="date_of_birth">
             <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">{{date}}</view>
         </picker>
     </view>
