@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(parseInt(options.baby_id)),
-      this.getBabyInjectList(parseInt(options.baby_id))
+    this.getBabyInjectList(parseInt(options.baby_id))
     this.setData({
       babyId: options.baby_id
     })
@@ -87,12 +87,12 @@ Page({
         inject_list: result.data.inject_list,
         baby_name: result.data.baby_info.full_name_of_baby ? result.data.baby_info.full_name_of_baby : '(未填写)',
         baby_birth: result.data.baby_info.date_of_birth,
-        remind_days: result.data.remind_days,       
-        vaccine_days: result.data.vaccine_days        
+        remind_days: result.data.remind_days,
+        vaccine_days: result.data.vaccine_days
       })
-console.log(_this.data)
+
     })
-   
+
   },
   /**
    * 月份显示
@@ -115,6 +115,7 @@ console.log(_this.data)
       })
     }
     for (var index in remind_days) {
+      console.log(index)
       var year_month = remind_days[index].substr(0, 7)
       if (year_month == this_year_month) {
         days_style.push({
