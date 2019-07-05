@@ -1,5 +1,7 @@
 
 {
-  "navigationBarTitleText": "接种记录"
-
+  "navigationBarTitleText": "接种记录",
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar"
+  }
 }

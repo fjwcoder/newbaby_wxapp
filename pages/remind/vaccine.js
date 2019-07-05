@@ -22,21 +22,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
+
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     // 默认显示当前年月
-    this.dealDateShow(App.year, App.month); 
+    this.dealDateShow(App.year, App.month);
 
 
   },
@@ -79,7 +81,8 @@ Page({
    * add by fjw in 19.7.4
    * 点击日期事件
    */
-  dayClick: function(event){
+  dayClick: function (event) {
+    console.log(event)
     wx.showLoading({
       title: '加载中',
     })
@@ -88,17 +91,17 @@ Page({
     var _day = String(event.detail.day);
     _month = (_month.length < 2) ? '0' + _month : _month;
     _day = (_day.length < 2) ? '0' + _day : _day;
-    var _this_date = _year+'-'+_month+'-'+_day;
+    var _this_date = _year + '-' + _month + '-' + _day;
     var remind_vaccine_str = '';
-    for(var index in this.data.remind_days){
+    for (var index in this.data.remind_days) {
       // console.log(index);
-      if(_this_date == this.data.remind_days[index]){
+      if (_this_date == this.data.remind_days[index]) {
         remind_vaccine_str = this.data.vaccine_days[index];
         // console.log(remind_vaccine_str);
         break;
 
       }
-      
+
     }
     // 后台获取疫苗信息数据数据
 
@@ -119,12 +122,23 @@ Page({
     var this_year_month = year + '-' + month; // 显示的年月
     // 如果显示的年月=当前的年月，则显示今日
     if (this_year_month == current_year_month) {
-      days_style.push({ month: 'current', day: App.day, color: 'white', background: '#AAD4F5' });
+      days_style.push({
+        month: 'current',
+        day: App.day,
+        color: 'white',
+        background: '#AAD4F5'
+      });
     }
+
     for (var index in remind_days) {
       var year_month = remind_days[index].substr(0, 7);
       if (year_month == this_year_month) { // 找到当前年月
-        days_style.push({ month: 'current', day: remind_days[index].substr(-2, 2), color: 'white', background: '#FF0000' });
+        days_style.push({
+          month: 'current',
+          day: remind_days[index].substr(-2, 2),
+          color: 'white',
+          background: '#FF0000'
+        });
       }
     }
     this.setData({
@@ -136,32 +150,33 @@ Page({
    * add by fjw in 19.7.4
    * 下个月
    */
-  nextMonth: function(event){
+  nextMonth: function (event) {
     this.changeYearMonth(event);
   },
   /**
    * add by fjw in 19.7.4
    * 上个月
    */
-  prevMonth: function(event){
+  prevMonth: function (event) {
     this.changeYearMonth(event);
   },
+
   /**
    * add by fjw in 19.7.4
    * 选择日期
    */
   dateChange: function (event) {
+    console.log(event)
     this.changeYearMonth(event);
   },
   /**
    * add by fjw in 19.7.4 
    * 改变年月
    */
-  changeYearMonth: function(event){
+  changeYearMonth: function (event) {
     var _year = String(event.detail.currentYear);
     var _month = String(event.detail.currentMonth);
     _month = (_month.length < 2) ? '0' + _month : _month;
     this.dealDateShow(_year, _month);
   }
-
 })
