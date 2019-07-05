@@ -1,5 +1,7 @@
 <view class="big_box">
-<calendar calendar-style="calendar" border-style="board" binddateChange="dateChange" show-more-days="{{true}}" days-color="{{days_style}}" weeks-type="cn" binddayClick="dayClick" bindnextMonth="nextMonth" bindprevMonth="prevMonth" />
+<view class="shadow-warp">
+<calendar  calendar-style="calendar" border-style="board" binddateChange="dateChange" show-more-days="{{true}}" days-color="{{days_style}}" weeks-type="cn" binddayClick="dayClick" bindnextMonth="nextMonth" bindprevMonth="prevMonth" />
+    </view>
     <view class="box_item">
         <view class="name" hover-class="none" hover-stop-propagation="false">姓名：{{baby_name}}</view>
         <view class="shengri" hover-class="none" hover-stop-propagation="false">

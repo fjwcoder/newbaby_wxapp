@@ -12,14 +12,6 @@ Page({
       "blue", "cyan", "olive", "green", "blue", "cyan", "olive", "green", "blue", "cyan", "olive", "green", "blue", "cyan", "olive",
     ],
     days_style: [],
-    // remind_days: [
-    //   '2019-07-01', '2019-07-22', '2019-08-03', '2019-08-24', '2019-09-05'
-    // ],
-    // vaccine_days: [
-    //   '1,2,3', '4,5', '6', '7,8,9', '10,11'
-    // ],
-    remind_days:'',
-    vaccine_days:''
   },
 
   /**
@@ -98,7 +90,7 @@ Page({
         remind_days: result.data.remind_days,       
         vaccine_days: result.data.vaccine_days        
       })
-
+console.log(_this.data)
     })
    
   },
@@ -188,6 +180,13 @@ Page({
     var _month = String(e.detail.currentMonth)
     _month = (_month.length < 2) ? '0' + _month : _month
     this.dealDateShow(_year, _month)
+  },
+  /**
+   * 选择日期
+   */
+  dateChange: function (e) {
+    console.log(e)
+    this.changeYearMonth(e);
   },
   /**
    * 
