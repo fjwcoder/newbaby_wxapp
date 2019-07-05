@@ -12,13 +12,15 @@ Page({
       "blue", "cyan", "olive", "green", "blue", "cyan", "olive", "green", "blue", "cyan", "olive", "green", "blue", "cyan", "olive",
     ],
     days_style: [],
+    remind_days: null,
+    vaccine_days: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(parseInt(options.baby_id)),
+
       this.getBabyInjectList(parseInt(options.baby_id))
     this.setData({
       babyId: options.baby_id
@@ -36,6 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     this.dealDateShow(App.year, App.month)
   },
 
@@ -82,7 +85,7 @@ Page({
       baby_id,
       user_token: App.getGlobalData('user_token')
     }, function (result) {
-      console.log(result)
+
       _this.setData({
         inject_list: result.data.inject_list,
         baby_name: result.data.baby_info.full_name_of_baby ? result.data.baby_info.full_name_of_baby : '(未填写)',
@@ -90,7 +93,8 @@ Page({
         remind_days: result.data.remind_days,       
         vaccine_days: result.data.vaccine_days        
       })
-console.log(_this.data)
+
+      _this.dealDateShow(App.year, App.month)
     })
    
   },
@@ -102,6 +106,7 @@ console.log(_this.data)
       title: '加载中'
     })
     var remind_days = this.data.remind_days
+    console.log(remind_days);
     var days_style = []
     var current_year_month = App.year + '-' + App.month
     var this_year_month = year + '-' + month
@@ -114,6 +119,7 @@ console.log(_this.data)
         background: '#AAD4F5'
       })
     }
+    console.log('before for in');
     for (var index in remind_days) {
       var year_month = remind_days[index].substr(0, 7)
       if (year_month == this_year_month) {
