@@ -117,8 +117,8 @@ Page({
       days_style.push({
         month: 'current',
         day: App.day,
-        color: 'white',
-        background: '#8799a3'
+        color: 'black',
+        background: '#e7ebed'
       })
     }
     console.log('before for in');
@@ -130,7 +130,7 @@ Page({
           month: 'current',
           day: remind_days[index].substr(-2, 2),
           color: 'white',
-          background: '#e03997'
+          background: '#fbbd08'
         })
       }
     }

@@ -124,6 +124,9 @@ page{
     margin-top: 20rpx;
 
 }
+.ym_num{
+    font-size: 30rpx;
+}
 .fubiaoti{
     font-size: 26rpx;
     display: inline-block;
