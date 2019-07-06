@@ -87,7 +87,7 @@ Page({
       baby_id,
       user_token: App.getGlobalData('user_token')
     }, function (result) {
-
+      console.log(result)
       _this.setData({
         inject_list: result.data.inject_list,
         baby_name: result.data.baby_info.full_name_of_baby ? result.data.baby_info.full_name_of_baby : '(未填写)',
@@ -95,10 +95,20 @@ Page({
         remind_days: result.data.remind_days,
         vaccine_days: result.data.vaccine_days
       })
-
+      var now_data = App.year + '-' + App.month + '-' + App.day
+      var next_data = null
+      for (var i = 0; i < result.data.remind_days.length; i++) {
+        if (now_data < result.data.remind_days[i]) {
+          next_data = result.data.remind_days[i]
+          break
+        }
+      }
       _this.dealDateShow(App.year, App.month)
+      _this.setData({
+        day_num: _this.subtractionData(now_data, next_data)
+      })
+      console.log(_this.data.day_num)
     })
-
   },
   /**
    * 月份显示
@@ -121,9 +131,9 @@ Page({
         background: '#e7ebed'
       })
     }
-    console.log('before for in');
+    // console.log('before for in');
     for (var index in remind_days) {
-      console.log(index)
+      //  console.log(index)
       var year_month = remind_days[index].substr(0, 7)
       if (year_month == this_year_month) {
         days_style.push({
@@ -160,32 +170,33 @@ Page({
       if (_this_date == this.data.remind_days[index]) {
         remind_vaccine_str = this.data.vaccine_days[index]
         // console.log(remind_vaccine_str);
+        App._post_form('vaccine/getVaccineInfo', {
+          user_token: App.getGlobalData('user_token'),
+          week: remind_vaccine_str
+        }, function (result) {
+          console.log(result)
+          _this.setData({
+            vacList: result.data,
+            show: 1
+          })
+          for (var i = 0; i < result.data.length; i++) {
+            console.log(i)
+            WxParse.wxParse('vacText' + i, 'html', result.data[i].ym_text, _this);
+            if (i === result.data.length - 1) {
+              WxParse.wxParseTemArray("vacTextArr", 'vacText', result.data.length, _this)
+            }
+          }
+
+          console.log(result.data.length)
+          // WxParse.wxParse('vacText', 'html', result.data[0].ym_text, _this, 5);
+
+        })
         break;
 
       }
 
     }
-    App._post_form('vaccine/getVaccineInfo', {
-      user_token: App.getGlobalData('user_token'),
-      week: remind_vaccine_str
-    }, function (result) {
-      console.log(result)
-      _this.setData({
-        vacList: result.data,
-        show: 1
-      })
-      for (var i = 0; i < result.data.length; i++) {
-        console.log(i)
-        WxParse.wxParse('vacText' + i, 'html', result.data[i].ym_text, _this);
-        if (i === result.data.length - 1) {
-          WxParse.wxParseTemArray("vacTextArr",'vacText', result.data.length, _this)
-        }
-      }
-     
-      console.log(result.data.length)
-      // WxParse.wxParse('vacText', 'html', result.data[0].ym_text, _this, 5);
 
-    })
 
 
     wx.hideLoading(); // 这个需要放到异步里边
@@ -239,5 +250,15 @@ Page({
     wx.navigateTo({
       url: 'addInoculate?type=1&inject_id=' + inject_id + '&baby_id=' + this.data.babyId,
     });
+  },
+  /**
+   *日期相减 
+   */
+  subtractionData(s, e) {
+    var start_date = new Date(s.replace(/-/g, "/"));
+    var end_date = new Date(e.replace(/-/g, "/"));
+    var days = end_date.getTime() - start_date.getTime();
+    var day_num = parseInt(days / (1000 * 60 * 60 * 24));
+    return day_num
   }
 })

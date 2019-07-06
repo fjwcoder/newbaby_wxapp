@@ -8,6 +8,9 @@
         <view class="shengri" hover-class="none" hover-stop-propagation="false">
             出生日期：{{baby_birth}}
         </view>
+        <view class="shengri ma_top" hover-class="none" hover-stop-propagation="false">
+            距离下次接种还有<text class="text-green day_num">{{day_num}}</text>天
+        </view>
     </view>
     <view class="cu-timeline">
         <view class="cu-time">接种记录</view>

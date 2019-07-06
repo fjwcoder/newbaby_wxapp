@@ -140,3 +140,11 @@ page{
 font-size: 28rpx;
 text-align: left;
 }
+.day_num{
+    font-size: 40rpx;
+
+}
+.ma_top{
+    margin-top: 20rpx;
+    text-align: center;
+}
