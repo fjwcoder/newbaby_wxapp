@@ -1,4 +1,4 @@
-/* pages/user/vaccinationList.wxss */
+@import "../../wxParse/wxParse.wxss";  
 page{
     background-color: #fff;
 }
@@ -123,4 +123,17 @@ page{
     color: #a3a3a3;
     margin-top: 20rpx;
 
+}
+.fubiaoti{
+    font-size: 26rpx;
+    display: inline-block;
+    text-align: right;
+    margin-left: 100rpx;
+}
+.ym_yongtu{
+    text-align: center;
+}
+.neirong{
+font-size: 28rpx;
+text-align: left;
 }

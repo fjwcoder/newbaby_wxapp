@@ -1,4 +1,5 @@
 // pages/user/vaccinationList.js
+var WxParse = require('../../wxParse/wxParse.js');
 let App = getApp()
 Page({
 
@@ -20,11 +21,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-      this.getBabyInjectList(parseInt(options.baby_id))
+    this.getBabyInjectList(parseInt(options.baby_id))
     this.setData({
       babyId: options.baby_id
     })
+
+
   },
 
   /**
@@ -38,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
     this.dealDateShow(App.year, App.month)
   },
 
@@ -116,7 +118,7 @@ Page({
         month: 'current',
         day: App.day,
         color: 'white',
-        background: '#AAD4F5'
+        background: '#8799a3'
       })
     }
     console.log('before for in');
@@ -128,7 +130,7 @@ Page({
           month: 'current',
           day: remind_days[index].substr(-2, 2),
           color: 'white',
-          background: '#FF0000'
+          background: '#e03997'
         })
       }
     }
@@ -141,6 +143,7 @@ Page({
    * 点击日期
    */
   dayClick(e) {
+    let _this = this
     console.log(e)
     wx.showLoading({
       title: '加载中',
@@ -162,7 +165,27 @@ Page({
       }
 
     }
-    // 后台获取疫苗信息数据数据
+    App._post_form('vaccine/getVaccineInfo', {
+      user_token: App.getGlobalData('user_token'),
+      week: remind_vaccine_str
+    }, function (result) {
+      console.log(result)
+      _this.setData({
+        vacList: result.data,
+        show: 1
+      })
+      for (var i = 0; i < result.data.length; i++) {
+        console.log(i)
+        WxParse.wxParse('vacText' + i, 'html', result.data[i].ym_text, _this);
+        if (i === result.data.length - 1) {
+          WxParse.wxParseTemArray("vacTextArr",'vacText', result.data.length, _this)
+        }
+      }
+     
+      console.log(result.data.length)
+      // WxParse.wxParse('vacText', 'html', result.data[0].ym_text, _this, 5);
+
+    })
 
 
     wx.hideLoading(); // 这个需要放到异步里边
@@ -194,6 +217,14 @@ Page({
   dateChange: function (e) {
     console.log(e)
     this.changeYearMonth(e);
+  },
+  /**
+   * 隐藏模态框
+   */
+  hideModal() {
+    this.setData({
+      show: null
+    })
   },
   /**
    * 
