@@ -22,7 +22,8 @@ Page({
       date: time,
       type: parseInt(options.type),
       baby_id: parseInt(options.baby_id),
-      inject_id: parseInt(options.inject_id)
+      inject_id: parseInt(options.inject_id),
+      today:App.year + '-' + App.month + '-' + App.day
     });
     if (this.data.type) {
       this.getBabyInjectInfo(parseInt(options.baby_id), parseInt(options.inject_id))
@@ -113,8 +114,16 @@ Page({
     } 
       values.user_token = App.getGlobalData('user_token')
       console.log(values)
+         // 表单验证
+    if (!_this.verification(values)) {
+      App.showError(_this.data.error);
+      return false;
+    }
     App._post_form('inject/editBabyInjectInfo', values, function (result) {
       console.log(result)
+    })
+    wx.navigateBack({
+      delta:1
     })
   },
   /**
@@ -138,5 +147,28 @@ Page({
       })
 
     })
-  }
+  },
+  /**
+   * 表单验证
+   */
+  verification(e) {
+    console.log(e);
+    if (e.vaccine_name === '') {
+      this.data.error = '请输入疫苗名称';
+      return false;
+    }
+    if (e.inject_body_part === '0' || e.inject_body_part === 0) {
+      this.data.error = '请选择接种部位';
+      return false;
+    }
+    if (e.inject_date > this.data.today) {
+      this.data.error = '接种时间不可晚于今日';
+      return false;
+    }
+    if (e.reaction === '') {
+      this.data.error = '请输入接种后的反应';
+      return false;
+    }
+    return true;
+  },
 })

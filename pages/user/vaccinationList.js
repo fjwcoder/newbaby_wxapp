@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBabyInjectList(parseInt(options.baby_id))
+   
     this.setData({
       babyId: options.baby_id
     })
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getBabyInjectList(parseInt(this.data.babyId))
     this.dealDateShow(App.year, App.month)
   },
 

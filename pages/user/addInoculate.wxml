@@ -11,11 +11,11 @@
     </view>
     <view class="cu-form-group ">
         <view class="title">疫苗厂家</view>
-        <input placeholder="请输入疫苗厂家" name="vaccine_factory" value="{{vaccine_factory}}"></input>
+        <input placeholder="请输入疫苗厂家(选填)" name="vaccine_factory" value="{{vaccine_factory}}"></input>
     </view>
     <view class="cu-form-group ">
         <view class="title">疫苗编号</view>
-        <input placeholder="请输入疫苗编号" name="vaccine_branch_no" value="{{vaccine_branch_no}}"></input>
+        <input placeholder="请输入疫苗编号(选填)" name="vaccine_branch_no" value="{{vaccine_branch_no}}"></input>
     </view> 
     <view class="cu-form-group">
         <view class="title">接种部位</view>
@@ -27,7 +27,7 @@
     </view>
     <view class="cu-form-group">
         <view class="title">接种时间</view>
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="{{type?'2031-01-01':date}}" bindchange="DateChange" name="inject_date">
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="{{today}}" bindchange="DateChange" name="inject_date">
             <view class="picker" style="text-align:left;font-size:30rpx;padding:0;">{{date}}</view>
         </picker>
     </view>
