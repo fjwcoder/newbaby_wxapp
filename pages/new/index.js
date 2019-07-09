@@ -37,29 +37,13 @@ Page({
     if (options.baby_id) {
       this.getBabyInfo(parseInt(options.baby_id))
     }
-    console.log(this.data),
-    console.log(this.data.babyId),
-    console.log(this.data.birth_certificate_no),
-    console.log(this.data.vaccine_certificate_no)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    if (this.data.babyId) {
-      console.log("编辑")
-      if (this.data.full_name_of_baby === undefined && this.data.vaccine_certificate_no === undefined && this.data.birth_certificate_no === undefined) {
-        wx.showModal({
-          title: '提示',
-          content: '请填写出生证编号等信息',
-          showCancel: false,
-          confirmText: '确定',
-          confirmColor: '#3CC51F',
-        });
-          
-      }
-    }
+
   },
 
   /**
@@ -127,6 +111,16 @@ Page({
         name_of_facility: result.data.name_of_facility,
         baby_weight: result.data.baby_weight,
       })
+      if (result.data.full_name_of_baby === '' && result.data.vaccine_certificate_no === '' && result.data.birth_certificate_no === '') {
+        wx.showModal({
+          title: '提示',
+          content: '请填写出生证编号等信息',
+          showCancel: false,
+          confirmText: '确定',
+          confirmColor: '#3CC51F',
+        });
+
+      }
     })
   },
   /**
@@ -233,7 +227,7 @@ Page({
       this.data.error = '请选择宝宝性别';
       return false;
     }
-    if (e.date_of_birth === '请选择' ) {
+    if (e.date_of_birth === '请选择') {
       this.data.error = '请选择宝宝出生日';
       return false;
     }
@@ -249,7 +243,7 @@ Page({
       this.data.error = '请输入宝宝身高';
       return false;
     }
-    if (e.health_status === '0'||e.health_status === 0) {
+    if (e.health_status === '0' || e.health_status === 0) {
       this.data.error = '请选择宝宝健康状况';
       return false;
     }

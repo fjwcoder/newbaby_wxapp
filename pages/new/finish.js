@@ -28,7 +28,7 @@ Page({
       guardian_name: babyInfo.guardian_name,
       guardian_mobile: babyInfo.guardian_mobile,
       backup_mobile: babyInfo.backup_mobile,
-      relationship_to_baby: babyInfo.relationship_to_baby,
+      relationshipIndex: babyInfo.relationship_to_baby,
       address: babyInfo.address,
       area: babyInfo.area.split(','),
     })
